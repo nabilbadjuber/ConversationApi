@@ -12,10 +12,12 @@ OPEN_API_KEY = config_data["OPENAI_API_KEY"]
 openai.api_key = OPEN_API_KEY
 
 def audioToText(audio_path: str):
+    input_audio = open(audio_path, "rb")
     text = openai.audio.transcriptions.create(
       model="whisper-1",
-      file=audio_path
+      file=input_audio
     )
+
     return text.text
 
 def textToAudio(input_text: str):
@@ -49,6 +51,5 @@ def conversation(audio_path: str):
     textToAudio(assistant_response)
 
     return FileResponse(f"{audio_dir}/output.mp3")
-
 
 
