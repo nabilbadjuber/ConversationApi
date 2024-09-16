@@ -9,7 +9,8 @@ config_dir = f"{working_dir}/config"
 
 config_data = json.load(open(f"{config_dir}/config.json"))
 OPEN_API_KEY = config_data["OPENAI_API_KEY"]
-openai.api_key = OPEN_API_KEY
+#openai.api_key = OPEN_API_KEY
+openai.api_key = os.getenv("OPENAI_API_KEY")
 
 def audioToText(audio_path: str):
     input_audio = open(audio_path, "rb")
