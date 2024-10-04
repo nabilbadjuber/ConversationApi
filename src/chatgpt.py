@@ -39,25 +39,26 @@ def conversation(audio_path: str):
     input_text = audioToText(audio_path)
 
     if "start over" in input_text:
-        conv = []
+        conv.clear()
+        textToAudio("The chat has now started over")
+    else:
+        conv.append({"role": "user", "content": input_text})
 
-    conv.append({"role": "user", "content": input_text})
+        # Sending the input text into chatgpt to get output text response
+        response = openai.chat.completions.create(
+            model="gpt-4o-mini",
+            messages=[
+                {"role": "system", "content": "I am a beginner in learning arabic. I would like to learn basic arabic conversation with role-pay. My current arabic is A1 based on CEFR Framework."},
+                *conv
+            ]
+        )
 
-    # Sending the input text into chatgpt to get output text response
-    response = openai.chat.completions.create(
-        model="gpt-4o-mini",
-        messages=[
-            {"role": "system", "content": "I am a beginner in learning arabic. I would like to learn basic arabic conversation with role-pay. My current arabic is A1 based on CEFR Framework."},
-            *conv
-        ]
-    )
+        assistant_response = response.choices[0].message.content
 
-    assistant_response = response.choices[0].message.content
+        conv.append({"role": "assistant", "content": assistant_response})
 
-    conv.append({"role": "assistant", "content": assistant_response})
-
-    # Transforming audio into text
-    textToAudio(assistant_response)
+        # Transforming audio into text
+        textToAudio(assistant_response)
 
     return FileResponse(f"{audio_dir}/output.mp3")
 
