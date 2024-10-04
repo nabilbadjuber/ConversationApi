@@ -11,6 +11,7 @@ config_data = json.load(open(f"{config_dir}/config.json"))
 #OPEN_API_KEY = config_data["OPENAI_API_KEY"]
 OPEN_API_KEY = os.getenv("OPENAI_API_KEY")
 openai.api_key = OPEN_API_KEY
+conv = []
 
 def audioToText(audio_path: str):
     input_audio = open(audio_path, "rb")
@@ -37,16 +38,23 @@ def conversation(audio_path: str):
     # Transforming audio into text
     input_text = audioToText(audio_path)
 
+    if "start over" in input_text:
+        conv = []
+
+    conv.append({"role": "user", "content": input_text})
+
     # Sending the input text into chatgpt to get output text response
     response = openai.chat.completions.create(
         model="gpt-4o-mini",
         messages=[
-            {"role": "system", "content": "You are a helpful assistant"},
-            {"role": "user", "content": input_text}
+            {"role": "system", "content": "I am a beginner in learning arabic. I would like to learn basic arabic conversation with role-pay. My current arabic is A1 based on CEFR Framework."},
+            *conv
         ]
     )
 
     assistant_response = response.choices[0].message.content
+
+    conv.append({"role": "assistant", "content": assistant_response})
 
     # Transforming audio into text
     textToAudio(assistant_response)
