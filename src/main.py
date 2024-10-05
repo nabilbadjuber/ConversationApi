@@ -20,7 +20,7 @@ async def upload(file:UploadFile = File(...)):
     # Getting an output
     return chat.conversation(f"{audio_dir}/input.mp3")
 
-@app.post('/llmapihistory')
+@app.get('/llmapihistory')
 async def chatHistory():
     # Getting chat history
     return chat.conv
