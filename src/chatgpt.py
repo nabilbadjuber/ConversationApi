@@ -48,7 +48,7 @@ def conversation(audio_path: str):
         response = openai.chat.completions.create(
             model="gpt-4o-mini",
             messages=[
-                {"role": "system", "content": "I am a beginner in learning arabic. I would like to learn basic arabic conversation with role-pay. My current arabic is A1 based on CEFR Framework."},
+                {"role": "system", "content": "I am a beginner in learning arabic. I would like to learn basic arabic role-play conversation. My current arabic is A1 based on CEFR Framework. Please dont correct my grammar when you answer me or give an alternative phrases or sentence to me."},
                 *conv
             ]
         )
