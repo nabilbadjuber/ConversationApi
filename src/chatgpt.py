@@ -48,7 +48,12 @@ def conversation(audio_path: str):
         response = openai.chat.completions.create(
             model="gpt-4o-mini",
             messages=[
-                {"role": "system", "content": "I am a beginner in learning arabic. I would like to learn basic arabic role-play conversation. My current arabic is A1 based on CEFR Framework. Please dont correct my grammar when you answer me or give an alternative phrases or sentence to me."},
+                {"role": "system", "content": "I am a beginner in learning arabic. I would like to learn arabic conversation based on role-play. "
+                                              "My current arabic is A1 based according to CEFR Framework. "
+                                              "Please correct my grammar when you answer me and please give me suggestion to response your replies. "
+                                              "For your response, put *Response* as indicator but dont put translation on your response and the way to read the arabic letters. "
+                                              "For grammar correction put *Grammar* as an indicator. For suggestion put *Suggestion* as an indicator. "
+                                              "The order of replies should be: response, grammar and then suggestion."},
                 *conv
             ]
         )
