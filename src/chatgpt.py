@@ -50,10 +50,8 @@ def conversation(audio_path: str):
             messages=[
                 {"role": "system", "content": "I am a beginner in learning arabic. I would like to learn arabic conversation based on role-play. "
                                               "My current arabic is A1 based according to CEFR Framework. "
-                                              "Please correct my grammar when you answer me and please give me suggestion to response your replies. "
-                                              "For your response, put *Response* as indicator but dont put translation on your response and the way to read the arabic letters. "
-                                              "For grammar correction put *Grammar* as an indicator. For suggestion put *Suggestion* as an indicator. "
-                                              "The order of replies should be: response, grammar and then suggestion."},
+                                              "Please do not correct my grammar when you answer me and please do not give me suggestion on your replies."
+                                              },
                 *conv
             ]
         )
@@ -65,6 +63,6 @@ def conversation(audio_path: str):
         # Transforming audio into text
         textToAudio(assistant_response)
 
-    return FileResponse(f"{audio_dir}/output.mp3")
+    #return FileResponse(f"{audio_dir}/output.mp3")
 
 
