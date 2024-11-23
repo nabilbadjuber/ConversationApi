@@ -7,6 +7,7 @@ from fastapi.responses import FileResponse
 
 working_dir = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
 audio_dir = f"{working_dir}/audio"
+img_dir = f"{working_dir}/image"
 
 app = FastAPI()
 
@@ -62,11 +63,11 @@ async def download_audio(filename: str):
     """
     Endpoint to download the processed audio file.
     """
-    return FileResponse(path=f"/audio/{filename}", media_type="audio/mpeg", filename=filename)
+    return FileResponse(path=f"{audio_dir}/{filename}", media_type="audio/mpeg", filename=filename)
 
 @app.get("/download/image/{filename}")
 async def download_image(filename: str):
     """
     Endpoint to download the processed image file.
     """
-    return FileResponse(path=f"/image/{filename}", media_type="image/png", filename=filename)
+    return FileResponse(path=f"{img_dir}/{filename}", media_type="image/png", filename=filename)
