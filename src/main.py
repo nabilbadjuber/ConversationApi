@@ -34,7 +34,7 @@ async def chatHistory():
 OUTPUT_AUDIO_PATH = "output.mp3"
 OUTPUT_IMAGE_PATH = "output-img.png"
 
-@app.post("/convreq/")
+@app.post("/convreq")
 async def process_audio(file: UploadFile = File(...)):
     """
     Process the uploaded audio and return a new audio file and an image.
