@@ -68,7 +68,7 @@ def conversation(audio_path: str):
 
         image_file_path = f"{img_dir}/{OUTPUT_IMAGE_PATH}"
 
-        prompt = "Can you generate me an image of two persons that the situation could be fit for making conversation after this two dialogues? "
+        prompt = "Can you generate me an image of two persons that the situation could be fit for making conversation based on the last two dialogues? "
 
         for i in range(len(conv)):
             if i%2 == 0:
