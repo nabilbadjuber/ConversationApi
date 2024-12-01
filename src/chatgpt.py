@@ -1,10 +1,11 @@
 import openai
 import os
 import json
-from fastapi.responses import FileResponse
+import urllib.request
 
 working_dir = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
 audio_dir = f"{working_dir}/audio"
+img_dir = f"{working_dir}/image"
 config_dir = f"{working_dir}/config"
 
 config_data = json.load(open(f"{config_dir}/config.json"))
@@ -48,8 +49,8 @@ def conversation(audio_path: str):
         response = openai.chat.completions.create(
             model="gpt-4o-mini",
             messages=[
-                {"role": "system", "content": "I am a beginner in learning arabic. I would like to learn arabic conversation based on role-play. "
-                                              "My current arabic is A1 based according to CEFR Framework. "
+                {"role": "system", "content": "I am a beginner in learning german. I would like to learn german conversation based on role-play. "
+                                              "My current german is A1 based according to CEFR Framework. "
                                               "Please do not correct my grammar when you answer me and please do not give me suggestion on your replies."
                                               },
                 *conv
@@ -63,6 +64,36 @@ def conversation(audio_path: str):
         # Transforming audio into text
         textToAudio(assistant_response)
 
-    #return FileResponse(f"{audio_dir}/output.mp3")
+    def scenarioImage():
+
+        image_file_path = f"{img_dir}/output-img.png"
+
+
+        '''
+        prompt = (
+            "Can you generate me an image of two persons that the situation could be fit for making conversation after these two dialogues? "
+            "Person A: Wow this supermarket offers a good price of an apple."
+            "Person B: Lets buy five of apples. Its very cheap.")
+        '''
+
+        prompt = "Can you generate me an image of two persons that the situation could be fit for making conversation after this two dialogues? "
+
+        for i in range(len(conv)):
+            if i%2 == 0:
+                prompt += "\nPerson A: " + conv[i]["content"]
+            else:
+                prompt += "\nPerson B: " + conv[i]["content"]
+
+        response = openai.images.generate(
+            model="dall-e-3",
+            prompt=prompt,
+            size="1024x1024",
+            quality="standard",
+            n=1,
+        )
+
+        urllib.request.urlretrieve(response.data[0].url, image_file_path)
+        return True
+
 
 

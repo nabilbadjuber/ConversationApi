@@ -48,6 +48,7 @@ async def process_audio(file: UploadFile = File(...)):
             f.write(content)
 
         chat.conversation(f"{audio_dir}/input.mp3")
+        chat.scenarioImage()
 
         # Return both files
         return {
