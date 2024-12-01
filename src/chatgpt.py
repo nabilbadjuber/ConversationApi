@@ -64,17 +64,9 @@ def conversation(audio_path: str):
         # Transforming audio into text
         textToAudio(assistant_response)
 
-    def scenarioImage():
+    def scenarioImage(OUTPUT_IMAGE_PATH):
 
-        image_file_path = f"{img_dir}/output-img.png"
-
-
-        '''
-        prompt = (
-            "Can you generate me an image of two persons that the situation could be fit for making conversation after these two dialogues? "
-            "Person A: Wow this supermarket offers a good price of an apple."
-            "Person B: Lets buy five of apples. Its very cheap.")
-        '''
+        image_file_path = f"{img_dir}/{OUTPUT_IMAGE_PATH}"
 
         prompt = "Can you generate me an image of two persons that the situation could be fit for making conversation after this two dialogues? "
 
