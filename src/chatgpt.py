@@ -64,28 +64,27 @@ def conversation(audio_path: str):
         # Transforming audio into text
         textToAudio(assistant_response)
 
-    def scenarioImage(OUTPUT_IMAGE_PATH):
+def scenarioImage(OUTPUT_IMAGE_PATH):
 
-        image_file_path = f"{img_dir}/{OUTPUT_IMAGE_PATH}"
+    image_file_path = f"{img_dir}/{OUTPUT_IMAGE_PATH}"
 
-        prompt = "Can you generate me an image of two persons that the situation could be fit for making conversation based on the last two dialogues? "
+    prompt = "Can you generate me an image of two persons that the situation could be fit for making conversation based on the last two dialogues? "
 
-        for i in range(len(conv)):
-            if i%2 == 0:
-                prompt += "\nPerson A: " + conv[i]["content"]
-            else:
-                prompt += "\nPerson B: " + conv[i]["content"]
+    for i in range(len(conv)):
+        if i%2 == 0:
+            prompt += "\nPerson A: " + conv[i]["content"]
+        else:
+            prompt += "\nPerson B: " + conv[i]["content"]
 
-        response = openai.images.generate(
-            model="dall-e-3",
-            prompt=prompt,
-            size="1024x1024",
-            quality="standard",
-            n=1,
-        )
+    response = openai.images.generate(
+        model="dall-e-3",
+        prompt=prompt,
+        size="1024x1024",
+        quality="standard",
+        n=1,
+    )
 
-        urllib.request.urlretrieve(response.data[0].url, image_file_path)
-        return True
-
+    urllib.request.urlretrieve(response.data[0].url, image_file_path)
+    return True
 
 
