@@ -1,9 +1,16 @@
-import shutil
 
 from fastapi import FastAPI, UploadFile, File
 import chatgpt as chat
 import os
 from fastapi.responses import FileResponse
+from typing import List
+from pydantic import BaseModel
+
+class Message(BaseModel):
+    role: str  # "assistant" or "user"
+    content: str  # The message content
+    isSentByUser: bool
+    datetime: str
 
 working_dir = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
 audio_dir = f"{working_dir}/audio"
@@ -72,3 +79,8 @@ async def download_image(filename: str):
     Endpoint to download the processed image file.
     """
     return FileResponse(path=f"{img_dir}/{filename}", media_type="image/png", filename=filename)
+
+@app.get("/convhist", response_model=List[Message])
+async def get_conversation():
+    return chat.conv
+
