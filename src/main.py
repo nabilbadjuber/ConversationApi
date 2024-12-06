@@ -114,7 +114,7 @@ async def websocket_endpoint(websocket: WebSocket):
         print("Client disconnected")
 
 @app.get("/vocabulary/")
-def get_vocabulary():
+async def get_vocabulary():
     vocabulary = [
         {
             "word": "helfen",
