@@ -44,7 +44,7 @@ def conversation(audio_path: str):
         conv.clear()
         textToAudio("The chat has now started over")
     else:
-        conv.append({"role": "user", "content": input_text, "isSentByUser": True, "datetime": datetime.now().strftime("%d-%m-%Y, %H:%M:%S")})
+        conv.append({"role": "user", "content": input_text, "isSentByUser": True, "datetime": datetime.now().strftime("%d-%m-%Y %H:%M:%S")})
 
         # Sending the input text into chatgpt to get output text response
         response = openai.chat.completions.create(
@@ -60,7 +60,7 @@ def conversation(audio_path: str):
 
         assistant_response = response.choices[0].message.content
 
-        conv.append({"role": "assistant", "content": assistant_response, "isSentByUser": False, "datetime": datetime.now().strftime("%d-%m-%Y, %H:%M:%S")})
+        conv.append({"role": "assistant", "content": assistant_response, "isSentByUser": False, "datetime": datetime.now().strftime("%d-%m-%Y %H:%M:%S")})
 
         # Transforming audio into text
         textToAudio(assistant_response)
