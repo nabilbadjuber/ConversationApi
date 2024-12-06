@@ -98,8 +98,8 @@ async def websocket_endpoint(websocket: WebSocket):
     try:
         while True:
             # Wait for a message from the client
-            data = await websocket.receive_text()
-            print(f"Received message from client: {data}")
+            #data = await websocket.receive_text()
+            #print(f"Received message from client: {data}")
 
             # Prepare the multidimensional array to send
             response_data = chat.conv
