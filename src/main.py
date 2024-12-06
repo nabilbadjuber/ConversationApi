@@ -28,23 +28,26 @@ img_dir = f"{working_dir}/image"
 
 app = FastAPI()
 
-@app.post('/llmapi')
-async def upload(file:UploadFile = File(...)):
 
-    # Read uploaded file and write it into drive
-    file_ext = file.filename.split(".").pop()
-    file_path = f"{audio_dir}/input.{file_ext}"
-    with open(file_path, "wb") as f:
-        content = await file.read()
-        f.write(content)
+### Old API response ###
 
-    # Getting an output
-    return chat.conversation(f"{audio_dir}/input.mp3")
-
-@app.post('/llmapihistory')
-async def chatHistory():
-    # Getting chat history
-    return chat.conv
+#@app.post('/llmapi')
+#async def upload(file:UploadFile = File(...)):
+#
+#    # Read uploaded file and write it into drive
+#    file_ext = file.filename.split(".").pop()
+#    file_path = f"{audio_dir}/input.{file_ext}"
+#    with open(file_path, "wb") as f:
+#        content = await file.read()
+#        f.write(content)
+#
+#    # Getting an output
+#    return chat.conversation(f"{audio_dir}/input.mp3")#
+#
+#@app.post('/llmapihistory')
+#async def chatHistory():
+#    # Getting chat history
+#    return chat.conv
 
 ### New API response ###
 # Define paths for processed files
@@ -110,3 +113,22 @@ async def websocket_endpoint(websocket: WebSocket):
         manager.disconnect(websocket)
         print("Client disconnected")
 
+@app.get("/vocabulary/")
+def get_vocabulary():
+    vocabulary = [
+        {
+            "word": "helfen",
+            "meaning": "to help",
+            "status": "Learning",
+            "n_learn": 10,
+            "is_repeated": True
+        },
+        {
+            "word": "kaufen",
+            "meaning": "to buy",
+            "status": "Skipped",
+            "n_learn": 0,
+            "is_repeated": False
+        }
+    ]
+    return vocabulary
