@@ -1,16 +1,26 @@
 
-from fastapi import FastAPI, UploadFile, File
+from fastapi import FastAPI, UploadFile, File, WebSocket, WebSocketDisconnect
 import chatgpt as chat
 import os
 from fastapi.responses import FileResponse
 from typing import List
-from pydantic import BaseModel
 
-class Message(BaseModel):
-    role: str  # "assistant" or "user"
-    content: str  # The message content
-    isSentByUser: bool
-    datetime: str
+
+# Store active WebSocket connections
+class ConnectionManager:
+    def __init__(self):
+        self.active_connections: List[WebSocket] = []
+
+    async def connect(self, websocket: WebSocket):
+        await websocket.accept()
+        self.active_connections.append(websocket)
+
+    def disconnect(self, websocket: WebSocket):
+        self.active_connections.remove(websocket)
+
+    async def broadcast(self, message: List[List[str]]):
+        for connection in self.active_connections:
+            await connection.send_json(message)
 
 working_dir = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
 audio_dir = f"{working_dir}/audio"
@@ -80,7 +90,23 @@ async def download_image(filename: str):
     """
     return FileResponse(path=f"{img_dir}/{filename}", media_type="image/png", filename=filename)
 
-@app.get("/convhist", response_model=List[Message])
-async def get_conversation():
-    return chat.conv
+manager = ConnectionManager()
+
+@app.websocket("/convhist")
+async def websocket_endpoint(websocket: WebSocket):
+    await manager.connect(websocket)
+    try:
+        while True:
+            # Wait for a message from the client
+            data = await websocket.receive_text()
+            print(f"Received message from client: {data}")
+
+            # Prepare the multidimensional array to send
+            response_data = chat.conv
+
+            # Broadcast the response to all connected clients
+            await manager.broadcast(response_data)
+    except WebSocketDisconnect:
+        manager.disconnect(websocket)
+        print("Client disconnected")
 
