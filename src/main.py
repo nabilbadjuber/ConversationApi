@@ -132,3 +132,12 @@ async def get_vocabulary():
         }
     ]
     return vocabulary
+
+@app.get("/scenarios/")
+async def get_scenarios():
+
+    vocabulary = [
+        {"id": 1, "title": "Introduction to Spanish", "image_url": "/image/img_cat_transport_taxi.png"},
+        {"id": 2, "title": "Ordering Food in German", "image_url": "/image/img_cat_transport_checkincounter.png"},
+    ]
+    return vocabulary
