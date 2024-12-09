@@ -145,3 +145,26 @@ async def get_scenarios():
         {"id": 6, "title": "Ordering Food in German", "image_url": "https://conversationapi-e8d4aaf0d53f.herokuapp.com/download/image/img_cat_transport_checkincounter.png"},
     ]
     return vocabulary
+
+@app.post("/getscenarios/")
+def get_scenarios(request: str):
+    """
+    Endpoint to fetch scenarios based on category.
+    """
+
+    categories_data = {
+        "transport": [
+            {"id": 1, "title": "Introduction to Spanish", "image_url": "https://conversationapi-e8d4aaf0d53f.herokuapp.com/download/image/img_cat_transport_taxi.png"},
+            {"id": 2, "title": "Ordering Food in German", "image_url": "https://conversationapi-e8d4aaf0d53f.herokuapp.com/download/image/img_cat_transport_checkincounter.png"},
+            {"id": 3, "title": "Introduction to Spanish", "image_url": "https://conversationapi-e8d4aaf0d53f.herokuapp.com/download/image/img_cat_transport_taxi.png"},
+            {"id": 4, "title": "Ordering Food in German", "image_url": "https://conversationapi-e8d4aaf0d53f.herokuapp.com/download/image/img_cat_transport_checkincounter.png"},
+            {"id": 5, "title": "Introduction to Spanish", "image_url": "https://conversationapi-e8d4aaf0d53f.herokuapp.com/download/image/img_cat_transport_taxi.png"},
+            {"id": 6, "title": "Ordering Food in German", "image_url": "https://conversationapi-e8d4aaf0d53f.herokuapp.com/download/image/img_cat_transport_checkincounter.png"},
+        ],
+        "health": [
+            {"id": 7, "title": "With cashier", "image_url": "https://conversationapi-e8d4aaf0d53f.herokuapp.com/download/image/img_cat_shopping_withcashier.png"},
+            {"id": 8, "title": "With butcher", "image_url": "https://conversationapi-e8d4aaf0d53f.herokuapp.com/download/image/img_cat_shopping_withbutcher.png"},
+        ],
+    }
+
+    return categories_data.get(request, [])
