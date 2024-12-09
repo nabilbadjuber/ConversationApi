@@ -139,5 +139,9 @@ async def get_scenarios():
     vocabulary = [
         {"id": 1, "title": "Introduction to Spanish", "image_url": download_image("img_cat_transport_taxi.png")},
         {"id": 2, "title": "Ordering Food in German", "image_url": download_image("img_cat_transport_checkincounter.png")},
+        {"id": 3, "title": "Introduction to Spanish", "image_url": download_image("img_cat_transport_taxi.png")},
+        {"id": 4, "title": "Ordering Food in German", "image_url": download_image("img_cat_transport_checkincounter.png")},
+        {"id": 5, "title": "Introduction to Spanish", "image_url": download_image("img_cat_transport_taxi.png")},
+        {"id": 6, "title": "Ordering Food in German", "image_url": download_image("img_cat_transport_checkincounter.png")},
     ]
     return vocabulary
