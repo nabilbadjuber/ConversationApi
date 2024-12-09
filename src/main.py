@@ -137,7 +137,7 @@ async def get_vocabulary():
 async def get_scenarios():
 
     vocabulary = [
-        {"id": 1, "title": "Introduction to Spanish", "image_url": download_image("img_cat_transport_taxi.png")},
-        {"id": 2, "title": "Ordering Food in German", "image_url": download_image("img_cat_transport_checkincounter.png")},
+        {"id": 1, "title": "Introduction to Spanish", "image_url": "https://conversationapi-e8d4aaf0d53f.herokuapp.com//download/image/img_cat_transport_taxi.png"},
+        {"id": 2, "title": "Ordering Food in German", "image_url": "https://conversationapi-e8d4aaf0d53f.herokuapp.com//download/image/img_cat_transport_checkincounter.png"},
     ]
     return vocabulary
