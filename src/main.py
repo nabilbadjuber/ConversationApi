@@ -147,7 +147,7 @@ async def get_scenarios():
     return vocabulary
 
 @app.post("/getscenarios/")
-def get_scenarios(category: str):
+def getscenarios(category: str):
     """
     Endpoint to fetch scenarios based on category.
     """
