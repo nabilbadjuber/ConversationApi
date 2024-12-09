@@ -161,7 +161,7 @@ def get_scenarios(request: str):
             {"id": 5, "title": "Introduction to Spanish", "image_url": "https://conversationapi-e8d4aaf0d53f.herokuapp.com/download/image/img_cat_transport_taxi.png"},
             {"id": 6, "title": "Ordering Food in German", "image_url": "https://conversationapi-e8d4aaf0d53f.herokuapp.com/download/image/img_cat_transport_checkincounter.png"},
         ],
-        "health": [
+        "shopping": [
             {"id": 7, "title": "With cashier", "image_url": "https://conversationapi-e8d4aaf0d53f.herokuapp.com/download/image/img_cat_shopping_withcashier.png"},
             {"id": 8, "title": "With butcher", "image_url": "https://conversationapi-e8d4aaf0d53f.herokuapp.com/download/image/img_cat_shopping_withbutcher.png"},
         ],
