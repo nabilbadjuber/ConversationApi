@@ -167,4 +167,4 @@ def get_scenarios(category: str):
         ],
     }
 
-    return categories_data["transport"]
+    return categories_data.get(category)
