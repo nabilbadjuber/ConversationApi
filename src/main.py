@@ -168,3 +168,15 @@ def getscenarios(category: str):
     }
 
     return categories_data.get(category)
+
+@app.get("/articles/trending")
+async def get_trending_articles():
+    return [
+        {"title": "Mastering a New Language: 10 Effective Tips for Rapid Learning", "image_url": "https://conversationapi-e8d4aaf0d53f.herokuapp.com/download/image/img_grammar.png", "category": "Tips and Tricks"},
+        {"title": "The Ultimate Guide to Language Learning: Strategies for Success", "image_url": "https://conversationapi-e8d4aaf0d53f.herokuapp.com/download/image/img_grammar.png", "category": "Tips and Tricks"},
+        {"title": "Speak Like a Native: Essential Tips for Language Fluency", "image_url": "https://conversationapi-e8d4aaf0d53f.herokuapp.com/download/image/img_grammar.png", "category": "Tips and Tricks"},
+        {"title": "Unlocking Language Skills: Practical Tips for Everyday Practice", "image_url": "https://conversationapi-e8d4aaf0d53f.herokuapp.com/download/image/img_grammar.png", "category": "Tips and Tricks"},
+        {"title": "From Beginner to Pro: A Roadmap for Successful Language Acquisition", "image_url": "https://conversationapi-e8d4aaf0d53f.herokuapp.com/download/image/img_grammar.png", "category": "Tips and Tricks"},
+        {"title": "Engage and Enhance: Fun Methods to Make Language Learning Enjoyable", "image_url": "https://conversationapi-e8d4aaf0d53f.herokuapp.com/download/image/img_grammar.png", "category": "Tips and Tricks"},
+        {"title": "'Verb position zwei'", "image_url": "https://conversationapi-e8d4aaf0d53f.herokuapp.com/download/image/img_grammar.png", "category": "Structure"},
+    ]
