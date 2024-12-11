@@ -180,3 +180,13 @@ async def get_trending_articles():
         {"title": "Engage and Enhance: Fun Methods to Make Language Learning Enjoyable", "image_url": "https://conversationapi-e8d4aaf0d53f.herokuapp.com/download/image/img_grammar.png", "category": "Tips and Tricks"},
         {"title": "'Verb position zwei'", "image_url": "https://conversationapi-e8d4aaf0d53f.herokuapp.com/download/image/img_grammar.png", "category": "Structure"},
     ]
+
+@app.get("/articles/explore")
+async def get_explore_articles():
+    return [
+        { "image_url": "https://conversationapi-e8d4aaf0d53f.herokuapp.com/download/image/img_grammar.png", "category": "Phrases" },
+        { "image_url": "https://conversationapi-e8d4aaf0d53f.herokuapp.com/download/image/img_grammar.png", "category": "Structure" },
+        { "image_url": "https://conversationapi-e8d4aaf0d53f.herokuapp.com/download/image/img_grammar.png", "category": "Idioms" },
+        { "image_url": "https://conversationapi-e8d4aaf0d53f.herokuapp.com/download/image/img_grammar.png", "category": "Grammar" },
+        { "image_url": "https://conversationapi-e8d4aaf0d53f.herokuapp.com/download/image/img_grammar.png", "category": "Tips and Tricks" }
+    ]
