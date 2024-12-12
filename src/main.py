@@ -190,3 +190,13 @@ async def get_explore_articles():
         { "image_url": "https://conversationapi-e8d4aaf0d53f.herokuapp.com/download/image/img_grammar.png", "category": "Grammar" },
         { "image_url": "https://conversationapi-e8d4aaf0d53f.herokuapp.com/download/image/img_grammar.png", "category": "Tips and Tricks" }
     ]
+
+@app.get("/articles/latest")
+async def get_latest_articles():
+    return [
+        { "title": "Mastering a New Language: 10 Effective Tips for Rapid Learning", "image_url": "https://conversationapi-e8d4aaf0d53f.herokuapp.com/download/image/img_grammar.png", "category": "Phrases", "datetime": "Today 15:00" },
+        { "title": "The Ultimate Guide to Language Learning: Strategies for Success", "image_url": "https://conversationapi-e8d4aaf0d53f.herokuapp.com/download/image/img_grammar.png", "category": "Structure", "datetime": "11/12/2024 14:25" },
+        { "title": "Speak Like a Native: Essential Tips for Language Fluency", "image_url": "https://conversationapi-e8d4aaf0d53f.herokuapp.com/download/image/img_grammar.png", "category": "Idioms", "datetime": "11/12/2024 09:19" },
+        { "title": "Unlocking Language Skills: Practical Tips for Everyday Practice", "image_url": "https://conversationapi-e8d4aaf0d53f.herokuapp.com/download/image/img_grammar.png", "category": "Grammar", "datetime": "10/12/2024 11:21" },
+        { "title": "From Beginner to Pro: A Roadmap for Successful Language Acquisition", "image_url": "https://conversationapi-e8d4aaf0d53f.herokuapp.com/download/image/img_grammar.png", "category": "Tips and Tricks", "datetime": "05/12/2024 19:01" }
+    ]
