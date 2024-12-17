@@ -207,10 +207,10 @@ async def get_achievement():
         {
             "fluency": 20, "grammar": 25, "streak": {25,"27.11.2024"}, "exp": 175787, "scenarios": 98, "words": 500,
             "categories": {
-                "transport" : 25,
-                "shopping" : 35,
-                "health" : 55,
-                "business" : 70
+                "transport" : {25, 127},
+                "shopping" : {35, 500},
+                "health" : {55, 30},
+                "business" : {70, 40}
             }
         }
     ]
