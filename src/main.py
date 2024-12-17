@@ -200,3 +200,17 @@ async def get_latest_articles():
         { "title": "Unlocking Language Skills: Practical Tips for Everyday Practice", "image_url": "https://conversationapi-e8d4aaf0d53f.herokuapp.com/download/image/img_grammar.png", "category": "Grammar", "datetime": "10/12/2024 11:21" },
         { "title": "From Beginner to Pro: A Roadmap for Successful Language Acquisition", "image_url": "https://conversationapi-e8d4aaf0d53f.herokuapp.com/download/image/img_grammar.png", "category": "Tips and Tricks", "datetime": "05/12/2024 19:01" }
     ]
+
+@app.get("/user/achievement")
+async def get_achievement():
+    return [
+        {
+            "fluency": 20, "grammar": 25, "streak": {25,"27.11.2024"}, "exp": 175787, "scenarios": 98, "words": 500,
+            "categories": {
+                "transport" : 25,
+                "shopping" : 35,
+                "health" : 55,
+                "business" : 70
+            }
+        }
+    ]
