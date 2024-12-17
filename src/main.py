@@ -205,7 +205,7 @@ async def get_latest_articles():
 async def get_achievement():
     return [
         {
-            "fluency": 20, "grammar": 25, "streak": {25,"27.11.2024"}, "exp": 175787, "scenarios": 98, "words": 500,
+            "fluency": 20, "grammar": 25, "streak": {25, "27.11.2024"}, "exp": 175787, "scenarios": 98, "words": 500,
             "categories": {
                 "transport" : {25, 127},
                 "shopping" : {35, 500},
