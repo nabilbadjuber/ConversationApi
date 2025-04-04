@@ -99,7 +99,9 @@ def scenarioImage(OUTPUT_IMAGE_PATH, assistant_response: str):
     # With interlocutor
     # prompt = "Generate me an image of a " + subject + " " + verb + " " + object + " saying \"" + dialog + "\" in " + place + " office. Image size: 800x800. Image style: watercolor painting"
 
-    prompt = ("Generate me an image of your response. Your response: " + assistant_response +". It will be always conversation of two people. "
+    print(assistant_response)
+
+    prompt = ("Generate me an image of your response. Your response: " + str(assistant_response) +". It will be always conversation of two people. "
               "You as an officer is a person who talk on the right of image, and me as a listener on the left. "
               "Location is Citizen's Office. Please give an object hint to me in the image to give an idea of what to response you. "
               "Image size: 800x800. Image style: fantasy watercolor painting.")
