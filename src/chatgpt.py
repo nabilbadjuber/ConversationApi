@@ -4,6 +4,8 @@ import json
 import urllib.request
 from datetime import datetime
 
+from click import prompt
+
 working_dir = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
 audio_dir = f"{working_dir}/audio"
 img_dir = f"{working_dir}/image"
@@ -69,13 +71,32 @@ def scenarioImage(OUTPUT_IMAGE_PATH):
 
     image_file_path = f"{img_dir}/{OUTPUT_IMAGE_PATH}"
 
-    prompt = "Can you generate me an image of two persons that the situation could be fit for making conversation based on the last two dialogues? "
+    # prompt = "Can you generate me an image of two persons that the situation could be fit for making conversation based on the last two dialogues? "
+    # for i in range(len(conv)):
+    #    if i%2 == 0:
+    #        prompt += "\nPerson A: " + conv[i]["content"]
+    #    else:
+    #        prompt += "\nPerson B: " + conv[i]["content"]
 
-    for i in range(len(conv)):
-        if i%2 == 0:
-            prompt += "\nPerson A: " + conv[i]["content"]
-        else:
-            prompt += "\nPerson B: " + conv[i]["content"]
+
+    # With interlocutor
+    # subject = "man"
+    # verb = "listening to"
+    # object = "Beamte"
+    # place = "Burgeramt"
+    # dialog = "Fullen Sie dieses formular aus und unterscreiben Sie hier"
+
+    # Alone
+    # subject = "man"
+    # verb = "ausfullen"
+    # object = "Anmeldeformular"
+    # place = "Burgeramt"
+    # dialog = ""
+
+    # With interlocutor
+    # prompt = "Generate me an image of a " + subject + " " + verb + " " + object + " saying \"" + dialog + "\" in " + place + " office. Image size: 800x800. Image style: watercolor painting"
+
+    prompt = "Generate me an image of your last response. It will be always conversation of two people. You as an officer is a person who talk on the right of image, and me as a listener on the left. Location is Citizen's Office. Image size: 800x800. Image style: watercolor painting."
 
     response = openai.images.generate(
         model="dall-e-3",
