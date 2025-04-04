@@ -55,7 +55,7 @@ def conversation(audio_path: str):
                 {"role": "system", "content": "I am a beginner in learning german. I would like to learn german conversation based on role-play. "
                                               "My current german is A1 based according to CEFR Framework. "
                                               "Please do not correct my grammar when you answer me and please do not give me suggestion on your replies."
-                                              "Limit response to maximum 30 words."
+                                              "Limit every responses to maximum 30 words."
                                               },
                 *conv
             ]
