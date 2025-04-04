@@ -105,7 +105,7 @@ def scenarioImage(OUTPUT_IMAGE_PATH):
     response = openai.images.generate(
         model="dall-e-3",
         prompt=prompt,
-        size="800x800",
+        size="1024x1024",
         quality="standard",
         n=1,
     )
