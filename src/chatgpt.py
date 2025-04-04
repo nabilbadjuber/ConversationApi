@@ -101,7 +101,7 @@ def scenarioImage(OUTPUT_IMAGE_PATH, assistant_response: str):
     prompt = ("Generate me an image of your response. Your response: " + assistant_response +". It will be always conversation of two people. "
               "You as an officer is a person who talk on the right of image, and me as a listener on the left. "
               "Location is Citizen's Office. Please give an object hint to me in the image to give an idea of what to response you. "
-              "Image size: 800x800. Image style: fantasy storybook.")
+              "Image size: 800x800. Image style: fantasy watercolor painting.")
 
     response = openai.images.generate(
         model="dall-e-3",
