@@ -80,11 +80,8 @@ def scenarioImage(OUTPUT_IMAGE_PATH):
 
     image_file_path = f"{img_dir}/{OUTPUT_IMAGE_PATH}"
 
-
-    prompt = ("Generate me an image of your response. Your response: " + str(conv[len(conv) - 1]["content"]) +". It will be always conversation of two people. "
-              "You as an officer is a person who talk on the right of image, and me as a listener on the left. "
-              "Location is Citizen's Office. Please give an object hint to me in the image to give an idea of what to response you. "
-              "Image size: 800x800. Image style: fantasy watercolor painting.")
+    keywords = img_prompt_generator("keywords_gn", "")
+    prompt = img_prompt_generator("img_prompt", keywords)
 
     response = openai.images.generate(
         model="dall-e-3",
@@ -96,6 +93,26 @@ def scenarioImage(OUTPUT_IMAGE_PATH):
 
     urllib.request.urlretrieve(response.data[0].url, image_file_path)
     return True
+
+def img_prompt_generator(purpose: str, keywords: str):
+
+    prompt = ""
+    if purpose == "img_prompt":
+        prompt += "I would like to create a best prompt message to generate image based on your last dialogue: " + conv[len(conv) - 1]["content"] + ".  on our role-play scenario conversation. These are the keywords: " + keywords + ". The image style would be Japanese 80s comic book art like doraemon."
+
+        return "True"
+    else:
+        prompt += "I would like to create an image based on your last dialogue on our role-play scenario conversation. I need your help to extract the relevant keywords and nouns out of this dialogue: " + \
+                      conv[len(conv) - 1]["content"] + ". Please generate keywords only. No description, explanation or whatsoever."
+
+    gen_response = openai.chat.completions.create(
+        model="gpt-4o-mini",
+        messages=[
+            {"role": "system", "content": prompt}
+        ]
+    )
+
+    return gen_response.choices[0].message.content
 
     # prompt = "Can you generate me an image of two persons that the situation could be fit for making conversation based on the last two dialogues? "
     # for i in range(len(conv)):
@@ -125,7 +142,6 @@ def scenarioImage(OUTPUT_IMAGE_PATH):
     #          "You as an officer is a person who talk on the right of image, and me as a listener on the left. "
     #          "Location is Citizen's Office. Please give an object hint to me in the image to give an idea of what to response you. "
     #          "Image size: 800x800. Image style: fantasy watercolor painting.")
-
 
 
 
