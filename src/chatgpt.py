@@ -44,7 +44,7 @@ def conversation(audio_path: str):
 
     role = "cashier"
     place = "restaurant"
-    lang = "english"
+    lang = "german"
 
     context = ("You are roleplaying as a " + role + " in a " + place + " to help a user practice " + lang + ". The conversation simulates a realistic and friendly interaction."
                "Rules: 1. The dialogue must be no more than 7 turns total (each turn = 1 user + 1 assistant message)."
