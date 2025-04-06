@@ -106,7 +106,7 @@ def scenarioImage(OUTPUT_IMAGE_PATH):
     reference_id = image_data.id
 
     print("Reference id: " + reference_id)
-    urllib.request.urlretrieve(image_data.url, image_file_path)
+    urllib.request.urlretrieve(response.data[0].url, image_file_path)
     return True
 
 def img_prompt_generator(purpose: str, keywords: str):
