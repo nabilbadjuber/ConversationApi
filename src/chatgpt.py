@@ -22,7 +22,8 @@ def audioToText(audio_path: str):
     input_audio = open(audio_path, "rb")
     text = openai.audio.transcriptions.create(
       model="whisper-1",
-      file=input_audio
+      file=input_audio,
+    language="de"
     )
 
     print("Transcribe: " + text.text)
