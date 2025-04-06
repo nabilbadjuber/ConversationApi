@@ -18,6 +18,10 @@ openai.api_key = OPEN_API_KEY
 conv = []
 reference_id = None
 
+
+def __init__(self):
+    self.reference_id = None
+
 def audioToText(audio_path: str):
     input_audio = open(audio_path, "rb")
     text = openai.audio.transcriptions.create(
@@ -104,7 +108,11 @@ def scenarioImage(OUTPUT_IMAGE_PATH):
 
     response = openai.images.generate(**request_params)
 
-    urllib.request.urlretrieve(response.data[0].url, image_file_path)
+    image_data = response.data[0]
+    # Update the global reference_id
+    reference_id = image_data.id
+
+    urllib.request.urlretrieve(image_data.url, image_file_path)
     return True
 
 def img_prompt_generator(purpose: str, keywords: str):
