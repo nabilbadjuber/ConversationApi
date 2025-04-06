@@ -98,13 +98,8 @@ def scenarioImage(OUTPUT_IMAGE_PATH):
         prompt=prompt,
         size="1024x1024",
         quality="standard",
-        n=1,
-        referenced_image_urls=['https://oaidalleapiprodscus.blob.core.windows.net/private/org-6eZNihooLcujhJFNEnqT6aT5/user-gCMCE1xiXvkOzcWLaPazpXRk/img-qrjtEqyAL0bP1I7vgELarynX.png?st=2025-04-06T10%3A55%3A46Z&se=2025-04-06T12%3A55%3A46Z&sp=r&sv=2024-08-04&sr=b&rscd=inline&rsct=image/png&skoid=d505667d-d6c1-4a0a-bac7-5c84a87759f8&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2025-04-06T08%3A39%3A23Z&ske=2025-04-07T08%3A39%3A23Z&sks=b&skv=2024-08-04&sig=oeZBqGZKOty/ESEeEVtylXOM033xW5ikhMH/A4RxrfU%3D']
+        n=1
     )
-
-
-    print("Response: " + str(img_response.data[0]))
-
 
     urllib.request.urlretrieve(img_response.data[0].url, image_file_path)
     return True
@@ -113,7 +108,7 @@ def img_prompt_generator(purpose: str, keywords: str):
 
     prompt = ""
     if purpose == "img_prompt":
-        prompt += "I would like to create a best prompt message to generate image based on your last dialogue: " + conv[len(conv) - 1]["content"] + ".  on our role-play scenario conversation. These are the keywords: " + keywords + ". The image style would be comic book style. Please generate result text only. Dont put any additional sentences or symbols."
+        prompt += "I would like to create a best prompt message to generate image based on your last dialogue: " + conv[len(conv) - 1]["content"] + " and the last generated image as reference to next image.  on our role-play scenario conversation. These are the keywords: " + keywords + ". The image style would be comic book style. Please generate result text only. Dont put any additional sentences or symbols."
     else:
         prompt += "I would like to create an image based on your last dialogue on our role-play scenario conversation. I need your help to extract the relevant keywords and nouns out of this dialogue: " + \
                       conv[len(conv) - 1]["content"] + ". Please generate keywords result only. Dont put any additional sentences or symbols."
