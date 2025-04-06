@@ -89,17 +89,20 @@ def conversation(audio_path: str):
 def scenarioImage(OUTPUT_IMAGE_PATH):
 
     image_file_path = f"{img_dir}/{OUTPUT_IMAGE_PATH}"
-    global reference_id  # So we can read/write it
+    #global reference_id  # So we can read/write it
 
     keywords = img_prompt_generator("keywords_gn", "")
     print(keywords)
     prompt = img_prompt_generator("img_prompt", keywords)
     print(prompt)
 
+    global reference_id  # So we can read/write it
+
     request_params = {
         "model": "dall-e-3",
         "prompt": prompt,
         "size": "1024x1024",
+        "quality": "standard",
         "n": 1
     }
 
@@ -107,6 +110,15 @@ def scenarioImage(OUTPUT_IMAGE_PATH):
         request_params["referenced_image_ids"] = [reference_id]
 
     response = openai.images.generate(**request_params)
+
+
+    # response = openai.images.generate(
+    #     model="dall-e-3",
+    #     prompt=prompt,
+    #     size="1024x1024",
+    #     quality="standard",
+    #     n=1,
+    # )
 
     image_data = response.data[0]
     # Update the global reference_id
