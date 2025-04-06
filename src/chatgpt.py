@@ -107,18 +107,22 @@ def scenarioImage(OUTPUT_IMAGE_PATH):
     }
 
     if reference_id:
-        request_params["referenced_image_ids"] = [reference_id]
-
-    response = openai.images.generate(**request_params)
-
-
-    # response = openai.images.generate(
-    #     model="dall-e-3",
-    #     prompt=prompt,
-    #     size="1024x1024",
-    #     quality="standard",
-    #     n=1,
-    # )
+        response = openai.images.generate(
+            model="dall-e-3",
+            prompt=prompt,
+            size="1024x1024",
+            quality="standard",
+            n=1,
+            referenced_image_ids= [reference_id]
+        )
+    else:
+        response = openai.images.generate(
+            model="dall-e-3",
+            prompt=prompt,
+            size="1024x1024",
+            quality="standard",
+            n=1
+        )
 
     image_data = response.data[0]
     # Update the global reference_id
