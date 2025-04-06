@@ -16,6 +16,7 @@ config_data = json.load(open(f"{config_dir}/config.json"))
 OPEN_API_KEY = os.getenv("OPENAI_API_KEY")
 openai.api_key = OPEN_API_KEY
 conv = []
+reference_id = None
 
 def audioToText(audio_path: str):
     input_audio = open(audio_path, "rb")
@@ -23,6 +24,8 @@ def audioToText(audio_path: str):
       model="whisper-1",
       file=input_audio
     )
+
+    print("Transcribe: " + text.text)
 
     return text.text
 
@@ -76,21 +79,29 @@ def conversation(audio_path: str):
         # Transforming audio into text
         textToAudio(assistant_response)
 
+
+
 def scenarioImage(OUTPUT_IMAGE_PATH):
 
     image_file_path = f"{img_dir}/{OUTPUT_IMAGE_PATH}"
+    global reference_id  # So we can read/write it
 
     keywords = img_prompt_generator("keywords_gn", "")
     print(keywords)
     prompt = img_prompt_generator("img_prompt", keywords)
     print(prompt)
-    response = openai.images.generate(
-        model="dall-e-3",
-        prompt=prompt,
-        size="1024x1024",
-        quality="standard",
-        n=1,
-    )
+
+    request_params = {
+        "model": "dall-e-3",
+        "prompt": prompt,
+        "size": "1024x1024",
+        "n": 1
+    }
+
+    if reference_id:
+        request_params["referenced_image_ids"] = [reference_id]
+
+    response = openai.images.generate(**request_params)
 
     urllib.request.urlretrieve(response.data[0].url, image_file_path)
     return True
