@@ -81,8 +81,9 @@ def scenarioImage(OUTPUT_IMAGE_PATH):
     image_file_path = f"{img_dir}/{OUTPUT_IMAGE_PATH}"
 
     keywords = img_prompt_generator("keywords_gn", "")
+    print(keywords)
     prompt = img_prompt_generator("img_prompt", keywords)
-
+    print(prompt)
     response = openai.images.generate(
         model="dall-e-3",
         prompt=prompt,
