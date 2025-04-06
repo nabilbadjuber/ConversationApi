@@ -99,10 +99,10 @@ def img_prompt_generator(purpose: str, keywords: str):
 
     prompt = ""
     if purpose == "img_prompt":
-        prompt += "I would like to create a best prompt message to generate image based on your last dialogue: " + conv[len(conv) - 1]["content"] + ".  on our role-play scenario conversation. These are the keywords: " + keywords + ". The image style would be Japanese 80s comic book art like doraemon."
+        prompt += "I would like to create a best prompt message to generate image based on your last dialogue: " + conv[len(conv) - 1]["content"] + ".  on our role-play scenario conversation. These are the keywords: " + keywords + ". The image style would be comic book style. Please generate result text only. Dont put any additional sentences or symbols."
     else:
         prompt += "I would like to create an image based on your last dialogue on our role-play scenario conversation. I need your help to extract the relevant keywords and nouns out of this dialogue: " + \
-                      conv[len(conv) - 1]["content"] + ". Please generate keywords only. No description, explanation or whatsoever."
+                      conv[len(conv) - 1]["content"] + ". Please generate keywords result only. Dont put any additional sentences or symbols."
 
     gen_response = openai.chat.completions.create(
         model="gpt-4o-mini",
