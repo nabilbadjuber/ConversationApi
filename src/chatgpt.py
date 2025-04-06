@@ -42,6 +42,18 @@ def conversation(audio_path: str):
     # Transforming audio into text
     input_text = audioToText(audio_path)
 
+    role = "cashier"
+    place = "restaurant"
+    lang = "english"
+
+    context = ("You are roleplaying as a " + role + " in a " + place + " to help a user practice " + lang + ". The conversation simulates a realistic and friendly interaction."
+               "Rules: 1. The dialogue must be no more than 7 turns total (each turn = 1 user + 1 assistant message)."
+               "2. Your sentences must be no longer than 30 words."
+               "3. Begin with a short greeting."
+               "4. End with a polite goodbye if it’s the 7th turn, even if the user hasn’t said goodbye."
+               "5. Be friendly and natural, but stay on topic."
+               "Scenario context: \“ I am at a " + place + " talking with you as a " + role + ".\”")
+
     if "start over" in input_text:
         conv.clear()
         textToAudio("The chat has now started over")
@@ -52,11 +64,7 @@ def conversation(audio_path: str):
         response = openai.chat.completions.create(
             model="gpt-4o-mini",
             messages=[
-                {"role": "system", "content": "I am a beginner in learning german. I would like to learn german conversation based on role-play. "
-                                              "My current german is A1 based according to CEFR Framework. "
-                                              "Please do not correct my grammar when you answer me and please do not give me suggestion on your replies."
-                                              "Limit every responses to maximum 30 words."
-                                              },
+                {"role": "system", "content": context },
                 *conv
             ]
         )
