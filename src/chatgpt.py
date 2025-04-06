@@ -16,7 +16,7 @@ config_data = json.load(open(f"{config_dir}/config.json"))
 OPEN_API_KEY = os.getenv("OPENAI_API_KEY")
 openai.api_key = OPEN_API_KEY
 conv = []
-reference_id = None
+reference_url = None
 
 def audioToText(audio_path: str):
     input_audio = open(audio_path, "rb")
@@ -85,7 +85,7 @@ def conversation(audio_path: str):
 def scenarioImage(OUTPUT_IMAGE_PATH):
 
     image_file_path = f"{img_dir}/{OUTPUT_IMAGE_PATH}"
-    global reference_id  # So we can read/write it
+    global reference_url  # So we can read/write it
 
     keywords = img_prompt_generator("keywords_gn", "")
     print(keywords)
@@ -98,7 +98,8 @@ def scenarioImage(OUTPUT_IMAGE_PATH):
         prompt=prompt,
         size="1024x1024",
         quality="standard",
-        n=1
+        n=1,
+        referenced_image_urls=['https://oaidalleapiprodscus.blob.core.windows.net/private/org-6eZNihooLcujhJFNEnqT6aT5/user-gCMCE1xiXvkOzcWLaPazpXRk/img-qrjtEqyAL0bP1I7vgELarynX.png?st=2025-04-06T10%3A55%3A46Z&se=2025-04-06T12%3A55%3A46Z&sp=r&sv=2024-08-04&sr=b&rscd=inline&rsct=image/png&skoid=d505667d-d6c1-4a0a-bac7-5c84a87759f8&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2025-04-06T08%3A39%3A23Z&ske=2025-04-07T08%3A39%3A23Z&sks=b&skv=2024-08-04&sig=oeZBqGZKOty/ESEeEVtylXOM033xW5ikhMH/A4RxrfU%3D']
     )
 
 
