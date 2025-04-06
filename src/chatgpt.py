@@ -102,7 +102,7 @@ def scenarioImage(OUTPUT_IMAGE_PATH):
     )
 
 
-    print("Response: " + img_response)
+    print("Response: " + str(img_response.data[0]))
 
 
     urllib.request.urlretrieve(img_response.data[0].url, image_file_path)
