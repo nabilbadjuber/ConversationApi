@@ -93,7 +93,7 @@ def scenarioImage(OUTPUT_IMAGE_PATH):
     print(prompt)
 
 
-    response = openai.images.generate(
+    img_response = openai.images.generate(
         model="dall-e-3",
         prompt=prompt,
         size="1024x1024",
@@ -101,12 +101,11 @@ def scenarioImage(OUTPUT_IMAGE_PATH):
         n=1
     )
 
-    image_data = response.data[0]
-    # Update the global reference_id
-    reference_id = image_data.id
 
-    print("Reference id: " + reference_id)
-    urllib.request.urlretrieve(response.data[0].url, image_file_path)
+    print("Response: " + img_response.data[0].url)
+
+
+    urllib.request.urlretrieve(img_response.data[0].url, image_file_path)
     return True
 
 def img_prompt_generator(purpose: str, keywords: str):
