@@ -114,7 +114,7 @@ def scenarioImage(OUTPUT_IMAGE_PATH):
     # Update the global reference_id
     reference_id = image_data.id
 
-    print(reference_id)
+    print("Reference id: " + reference_id)
     urllib.request.urlretrieve(image_data.url, image_file_path)
     return True
 
