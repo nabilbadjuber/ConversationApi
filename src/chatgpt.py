@@ -107,7 +107,9 @@ def img_prompt_generator(purpose: str, keywords: str):
 
     prompt = ""
     if purpose == "img_prompt":
-        prompt += "I would like to create a best prompt message to generate image based on your last dialogue: " + conv[len(conv) - 1]["content"] + ". These are the keywords: " + keywords + ". The image should contain me and you as characters. You are a " + role + " woman blonde long hair in a " + place + ". And I am your customer, man with black short hair. style would be 16-bit 2D pixel illustration. Please generate result text only. Dont put any additional sentences or symbols. Prompt words should be less than 70 words."
+        #prompt += "I would like to create a best prompt message to generate image based on your last dialogue: " + conv[len(conv) - 1]["content"] + ". These are the keywords: " + keywords + ". The image should contain me and you as characters. You are a " + role + " woman blonde long hair in a " + place + ". And I am your customer, man with black short hair. style would be 16-bit 2D pixel illustration. Please generate result text only. Dont put any additional sentences or symbols. Prompt words should be less than 70 words."
+        prompt += "I would like to create a best prompt message to generate image based on your last dialogue: " + conv[len(conv) - 1]["content"] + ". These are the keywords: " + keywords + ". The image should focus on the object we are currently speaking. Image style would be 16-bit 2D pixel illustration. Please generate result text only. Dont put any additional sentences or symbols. Prompt words should be less than 70 words."
+
     else:
         prompt += "I would like to create an image based on your last dialogue on our role-play scenario conversation. I need your help to extract the relevant keywords and nouns out of this dialogue: " + \
                       conv[len(conv) - 1]["content"] + ". Please generate keywords result only. Dont put any additional sentences or symbols."
