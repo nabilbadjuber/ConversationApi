@@ -17,6 +17,9 @@ OPEN_API_KEY = os.getenv("OPENAI_API_KEY")
 openai.api_key = OPEN_API_KEY
 conv = []
 reference_url = None
+role = "cashier"
+place = "restaurant"
+lang = "german"
 
 def audioToText(audio_path: str):
     input_audio = open(audio_path, "rb")
@@ -45,10 +48,6 @@ def conversation(audio_path: str):
 
     # Transforming audio into text
     input_text = audioToText(audio_path)
-
-    role = "cashier"
-    place = "restaurant"
-    lang = "german"
 
     context = ("You are roleplaying as a " + role + " in a " + place + " to help a user practice " + lang + ". The conversation simulates a realistic and friendly interaction."
                "Rules: 1. The dialogue must be no more than 7 turns total (each turn = 1 user + 1 assistant message)."
@@ -108,7 +107,7 @@ def img_prompt_generator(purpose: str, keywords: str):
 
     prompt = ""
     if purpose == "img_prompt":
-        prompt += "I would like to create a best prompt message to generate image based on your last dialogue: " + conv[len(conv) - 1]["content"] + " and the last generated image as reference to next image.  on our role-play scenario conversation. These are the keywords: " + keywords + ". The image style would be comic book style. Please generate result text only. Dont put any additional sentences or symbols."
+        prompt += "I would like to create a best prompt message to generate image based on your last dialogue: " + conv[len(conv) - 1]["content"] + ". These are the keywords: " + keywords + ". The image should contain me and you as characters. You are a " + role + " in a " + place + ". style would be soft anime style. Please generate result text only. Dont put any additional sentences or symbols."
     else:
         prompt += "I would like to create an image based on your last dialogue on our role-play scenario conversation. I need your help to extract the relevant keywords and nouns out of this dialogue: " + \
                       conv[len(conv) - 1]["content"] + ". Please generate keywords result only. Dont put any additional sentences or symbols."
